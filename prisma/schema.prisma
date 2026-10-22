@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           Int           @id @default(autoincrement())
+  username     String        @unique
+  passwordHash String
+  balance      Decimal       @default(0.00)
+  referrerId   Int?
+  referrer     User?         @relation("UserReferrals", fields: [referrerId], references: [id])
+  referrals    User[]        @relation("UserReferrals")
+  transactions Transaction[]
+
+  @@map("users")
+}
+
+model Product {
+  id       Int     @id @default(autoincrement())
+  title    String
+  price    Decimal
+  imageUrl String?
+
+  @@map("products")
+}
+
+model Transaction {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  amount      Decimal
+  description String?
+  createdAt   DateTime @default(now())
+
+  @@map("transactions")
+}
