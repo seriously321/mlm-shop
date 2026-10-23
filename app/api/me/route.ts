@@ -10,9 +10,12 @@ export async function GET() {
     return NextResponse.json({ error: 'Не авторизован' }, { status: 401 });
   }
 
-  const user = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
     where: { id: parseInt(userId) },
-    include: { transactions: true }
+    include: { 
+      transactions: true,
+      referrals: true // Добавляем загрузку приглашенных
+    }
   });
 
   if (!user) {

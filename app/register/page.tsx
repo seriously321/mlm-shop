@@ -103,11 +103,14 @@ export default function Register() {
           </div>
 
           <button 
-            onClick={handleRegister}
-            className="bg-white text-black font-medium py-3 rounded-md mt-4 hover:bg-zinc-200 transition"
-          >
-            Создать аккаунт
-          </button>
+  onClick={() => {
+    playSound();
+    handleLogin();
+  }}
+  className="bg-white text-black font-medium py-3 rounded-md mt-4 hover:bg-zinc-200 transition"
+>
+  Cоздать Аккаунт
+</button>
           
           {message && <p className="text-center text-sm mt-2">{message}</p>}
         </div>
