@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react';
+import { playSound } from '@/utils/playSound';
 
 export default function Register() {
   const [username, setUsername] = useState('');
@@ -105,7 +106,7 @@ export default function Register() {
           <button 
   onClick={() => {
     playSound();
-    handleLogin();
+    handleRegister()
   }}
   className="bg-white text-black font-medium py-3 rounded-md mt-4 hover:bg-zinc-200 transition"
 >
